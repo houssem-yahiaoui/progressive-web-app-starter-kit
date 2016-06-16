@@ -23,7 +23,7 @@ This command will download and install all needed dependecies.
 
  ```js
       const sender = new gcm.Sender('<put app_secret here>');
-       ```
+ ```
 
 By now the project is fully configured and everything is set to launch.
 
