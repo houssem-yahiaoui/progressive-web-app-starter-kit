@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <title>push-notification</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+    <link rel=manifest href=manifest.json>
+    <script src="/socket.io/socket.io.js"></script>
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">Pluralsight Lab | Push Notifications Demo</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation. We hide it in small screens. -->
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                    <a class="mdl-navigation__link" href=""><b>Github</b></a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <!-- Your content goes here -->
+            </div>
+        </main>
+    </div>
+
+    <script>
+        var socket = io.connect('http://localhost:3000');
+        socket.on('news', function(data) {
+            console.log(data);
+        });
+
+        //[*] Checking if Service Woker is supported in our Browser.
+        if ('serviceWorker' in navigator) {
+
+            navigator.serviceWorker
+                .register('sw.js')
+                .then((reg) => {
+                    console.log('Hello There !', reg);
+                    // [*] Subscribing to the Notification Publisher. 
+                    reg.pushManager.subscribe({
+                        userVisibleOnly: true
+                    }).then((sub) => {
+                        console.log('endpoint:', sub.endpoint.slice(40));
+                        // [*] Pushing our Registration Token to the Server.
+                        socket.emit('new_user', sub.endpoint.slice(40));
+                    });
+                });
+        }
+    </script>
+</body>
+
+</html>
