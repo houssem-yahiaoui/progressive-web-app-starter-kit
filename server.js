@@ -6,7 +6,7 @@ const gcm = require('node-gcm');
 app.io = require('socket.io')();
 
 // [*] Configuring our GCM Channel.
-const sender = new gcm.Sender('AIzaSyC25D6AD3DYax0YwSB_IpNpmzo8CgvkQtY');
+const sender = new gcm.Sender('');
 const regTokens = [];
 let message = new gcm.Message({
     data: {
