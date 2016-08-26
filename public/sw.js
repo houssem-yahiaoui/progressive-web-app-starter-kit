@@ -6,10 +6,10 @@ self.addEventListener('push', (event) => {
     console.log('Push message', event);
     // [*] Configuring our local push notifications.
     var title = 'Pushed';
+    payload = event.data ? event.data.text() : '';
     event.waitUntil(
         self.registration.showNotification(title, {
-            body: 'a message',
-            icon: 'images/icon.jpg',
-            tag: 'my-tag'
+            body: payload,
+            icon: 'images/icon.jpg'
         }));
 });

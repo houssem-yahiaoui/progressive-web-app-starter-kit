@@ -15,19 +15,28 @@
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
                 <!-- Title -->
-                <span class="mdl-layout-title">Pluralsight Lab | Push Notifications Demo</span>
+                <span class="mdl-layout-title">Push Notifications Demo</span>
                 <!-- Add spacer, to align navigation to the right -->
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation. We hide it in small screens. -->
                 <nav class="mdl-navigation mdl-layout--large-screen-only">
-                    <a class="mdl-navigation__link" href=""><b>Github</b></a>
+                    <a class="mdl-navigation__link" href="https://github.com/houssem-yahiaoui/webpush-notification"><b>Github</b></a>
                 </nav>
             </div>
         </header>
 
-        <main class="mdl-layout__content">
-            <div class="page-content">
+        <main class="mdl-grid">
+            <div class="page-content mdl-layout__content">
                 <!-- Your content goes here -->
+                <div class="mdl-cell mdl-cell--4-col">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="push_message">
+                        <label class="mdl-textfield__label" for="sample1">Push Message</label>
+                    </div>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="push">
+                        Push Me !
+                    </button>
+                </div>
             </div>
         </main>
     </div>
@@ -40,20 +49,42 @@
 
         //[*] Checking if Service Woker is supported in our Browser.
         if ('serviceWorker' in navigator) {
+            var endpoint;
+            var key;
+            var authSecret;
 
             navigator.serviceWorker
                 .register('sw.js')
                 .then((reg) => {
                     console.log('Hello There !', reg);
-                    // [*] Subscribing to the Notification Publisher. 
+                    // [*] Subscribing to the Notification Publisher.
                     reg.pushManager.subscribe({
                         userVisibleOnly: true
-                    }).then((sub) => {
-                        console.log('endpoint:', sub.endpoint.slice(40));
+                    }).then((subscription) => {
+                        console.log('endpoint:', subscription.endpoint);
                         // [*] Pushing our Registration Token to the Server.
-                        socket.emit('new_user', sub.endpoint.slice(40));
+                        socket.emit('new_user', subscription.endpoint);
+                        var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
+
+                        // [*] Public Key
+                        key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';
+                        var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
+                        authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
+                        endpoint = subscription.endpoint;
+                        console.log(endpoint, " + ", authSecret, " + ", key);
                     });
                 });
+            document.getElementById('push').onclick = function() {
+                payload = document.getElementById('push_message');
+                console.log("About to send :" + endpoint, " + ", authSecret, " + ", key, "payload:", payload.value);
+                console.log('sending push');
+                socket.emit('pushme', {
+                    endpoint: endpoint,
+                    key: key,
+                    authSecret: authSecret,
+                    payload: payload.value,
+                });
+            }
         }
     </script>
 </body>

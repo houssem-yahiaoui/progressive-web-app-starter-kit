@@ -17,8 +17,9 @@
   "author": "Houssem Yahiaoui",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.13.4",
-    "node-gcm": "^0.14.2",
-    "socket.io": "^1.4.6"
+    "socket.io": "^1.4.6",
+    "web-push": "^2.2.0"
   }
 }
