@@ -37,8 +37,28 @@
                         Push Me !
                     </button>
                 </div>
+                <ul class="demo-list-item mdl-list">
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">Application Reg_Id : <span id="endpoint"></span></span>
+                    </li>
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">Public Key : <span id="public_key"></span></span>
+                    </li>
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">Secret Key : <span id="secret_key"></span></span>
+                    </li>
+                </ul>
             </div>
         </main>
+
+            <footer class="mdl-mini-footer"  style="position: fixed; bottom: 0; width:100%;">
+                <div>
+                  <ul class="mdl-mini-footer__link-list">
+                      <li><b>Created with </b><span style="color:#FF69B4	">♥</span> <b> By</b> <a href="https://github.com/houssem-yahiaoui/webpush-notification"><b>Houssem Yahiaoui</b></a>
+                      </li>
+                  </ul>
+                </div>
+            </footer>
     </div>
 
     <script>
@@ -52,7 +72,9 @@
             var endpoint;
             var key;
             var authSecret;
-
+            var ed = document.getElementById("endpoint");
+            var pk = document.getElementById("public_key");
+            var k = document.getElementById("secret_key");
             navigator.serviceWorker
                 .register('sw.js')
                 .then((reg) => {
@@ -72,6 +94,11 @@
                         authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
                         endpoint = subscription.endpoint;
                         console.log(endpoint, " + ", authSecret, " + ", key);
+
+                        // Changing the view !
+                        ed.innerHTML = endpoint;
+                        pk.innerHTML = key;
+                        k.innerHTML = authSecret;
                     });
                 });
             document.getElementById('push').onclick = function() {
