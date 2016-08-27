@@ -19,7 +19,7 @@ This command will download and install all needed dependecies.
 2. In Google APIs area, enable the GCM API.
 3. By now you will have an **app_id** and **app_secret** keep those ids in a secure location.
 4. Now in our project files, go to the **manifest.json** file and update the **gcm_sender_id** with the one retreved from you project.
-5. Now go to the **server.js** file and do the following :
+5. Now go to the **api.js** file and do the following :
 
  ```js
       const sender = new gcm.Sender('<put app_secret here>');
