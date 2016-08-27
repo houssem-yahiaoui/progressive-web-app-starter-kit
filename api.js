@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // [*] Registring our GCM Token :
-webPush.setGCMAPIKey('AIzaSyC25D6AD3DYax0YwSB_IpNpmzo8CgvkQtY');
+webPush.setGCMAPIKey('YOUR KEY HERE !');
 
 const regTokens = [];
 
