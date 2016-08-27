@@ -40,7 +40,7 @@ Now to to **localhost:3000** approuve the notification **permission** and by now
 ##Update :
 
 I've added the new **WebPush** Library unstead of the the node-gcm one for keeping up with this exmaple because OEMs have also changed the implementation on browser level and headed to more cross platform presence.
-With this Uodate we can send custom payload (TEXT in the moment) through difrent chanels, this implmenetation will work over **Google Chrome** / **Firefox ** and hopefully more in the future.  
+With this Uodate we can send custom payload (TEXT in the moment) through difrent chanels, this implmenetation will work over **Google Chrome** - **Firefox** and hopefully more in the future.  
 
 Happy Coding :)
 
