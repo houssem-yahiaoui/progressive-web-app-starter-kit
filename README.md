@@ -43,9 +43,9 @@ I've added the new **WebPush** Library unstead of the the node-gcm one for keepi
 
 With this Uodate we can send custom payload (TEXT in the moment) through difrent chanels, this implmenetation will work over **Google Chrome** - **Firefox** and hopefully more in the future.  
 
-**[*] You can test this version from here : https://push-notifier.herokuapp.com/**
+**[*] PS : You can test this version from here : https://push-notifier.herokuapp.com/**
 
-Happy Coding :)
+**Happy Coding :)**
 
 Peace !
 
