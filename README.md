@@ -12,19 +12,22 @@ In order to get the dependecies make sure to do the following :
 
 This command will download and install all needed dependecies.
 
-## Application Configuration : 
+## Web Notification Configuration : 
 
-1. Head to [Firebase Console](console.cloud.google.com) and create new application.
-2. In Google APIs area, enable the GCM API.
-3. By now you will have an **app_id** and **app_secret** keep those ids in a secure location.
-4. Now in our project files, go to the **manifest.json** file and update the **gcm_sender_id** with the one retreved from you project.
-5. Now go to the **api.js** file and do the following :
+1. Head to [Firebase Console](https://console.firebase.google.com) and create new application.
+2. Pick or Create a new Firebase Application.
+3. Go to overview > Project Settings > Cloud Messeging and copy the Server Key (The long one)
+3. Now go to the **api.js** file and do the following :
 
  ```js
-      const sender = new gcm.Sender('<put app_secret here>');
+      const fcm = new FCM('<put app_secret here>');
  ```
 
 By now the project is fully configured and everything is set to launch.
+
+## Offline Based Application
+
+This demo incorporate Offline based experiences using firebase-messeging-sw file, you will find there that i've cached everything inside my **install** event there for our application will have the offline experience.
 
 ## Run the Application : 
 
@@ -33,19 +36,6 @@ In order to run the application go to your command line of choice and add the fo
 ```terminal
 # npm start
 ```
-
-Now to to **localhost:3000** approuve the notification **permission** and by now you will see the notification promt in your desktop.
-
-##Update :
-
-I've added the new **WebPush** Library unstead of the the node-gcm one for keeping up with this exmaple because OEMs have also changed the implementation on browser level and headed to more cross platform presence.
-
-With this Uodate we can send custom payload (TEXT in the moment) through difrent chanels, this implmenetation will work over **Google Chrome** - **Firefox** and hopefully more in the future.  
-
-##Application Testing
-
-You can test this version from here : **https://push-notifier.herokuapp.com/**
-
 **Happy Coding :)**
 
 Peace !
