@@ -1,7 +1,6 @@
-# Automated NodeJS Push Messages Notifier.
+# Progressive Web Application Walkthrough
 
-This is a simply demostration using both GCM and Web Notification API, this is an automated process where registration ids are sent in real time using
-socket.io.
+This is a simple PWA application built/concieved using the latest changes and rocommendations, especially the Firebase Cloud Messeging System or FCM
 
 ## Setup :
 
@@ -15,7 +14,7 @@ This command will download and install all needed dependecies.
 
 ## Application Configuration : 
 
-1. Head to [Google cloud Console](console.cloud.google.com) and create new application.
+1. Head to [Firebase Console](console.cloud.google.com) and create new application.
 2. In Google APIs area, enable the GCM API.
 3. By now you will have an **app_id** and **app_secret** keep those ids in a secure location.
 4. Now in our project files, go to the **manifest.json** file and update the **gcm_sender_id** with the one retreved from you project.
