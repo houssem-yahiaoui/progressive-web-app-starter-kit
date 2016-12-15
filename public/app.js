@@ -1,9 +1,9 @@
  var config = {
-     apiKey: "AIzaSyBHQIhiJ4g8QzTOpT5Iq3zDAvtj04xgfmM",
-     authDomain: "fcm-gdg-tlemcen.firebaseapp.com",
-     databaseURL: "https://fcm-gdg-tlemcen.firebaseio.com",
-     storageBucket: "fcm-gdg-tlemcen.appspot.com",
-     messagingSenderId: "565646927628"
+     apiKey: "",
+     authDomain: "",
+     databaseURL: "",
+     storageBucket: "",
+     messagingSenderId: ""
  };
  firebase.initializeApp(config);
 
