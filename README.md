@@ -29,6 +29,10 @@ By now the project is fully configured and everything is set to launch.
 
 This demo incorporate Offline based experiences using firebase-messeging-sw file, you will find there that i've cached everything inside my **install** event there for our application will have the offline experience.
 
+## Home Presence with Application Icon
+
+In this application, your experience will extended to your own mobile device via having on-tap away application wih application icon + splash screen.
+
 ## Run the Application : 
 
 In order to run the application go to your command line of choice and add the following commad :
