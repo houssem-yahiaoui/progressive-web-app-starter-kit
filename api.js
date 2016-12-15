@@ -24,7 +24,7 @@ app.io.on('connection', socket => {
 
     socket.on('pushme', (data) => {
       var serverKey = '';
-      var fcm = new FCM('AAAAg7MvJww:APA91bGRjxcK3l2lxpjZUOjgzONpNtUU_-4pKY1xxvhLnnYQ-c9PljJoDun5JBVEw4xI0iUEDfd64w1C6juHJe13SFxsBIHr0P-AW1pYms3ymqd2dcMgf8QAnhWnpoGKXxBwK5zyZe4B6WkxV1mmKxf3njP3lIgOeQ');
+      var fcm = new FCM('<FCM Server Key>');
         var message = {
             to: data.endpoint, // required fill with device token or topics
             notification: {
