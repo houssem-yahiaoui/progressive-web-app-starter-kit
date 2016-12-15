@@ -1,13 +1,13 @@
 <html>
 
 <head>
-    <title>push-notification</title>
+    <title>PWA</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
     <link rel=manifest href=manifest.json>
     <script src="/socket.io/socket.io.js"></script>
     <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
                 <!-- Title -->
-                <span class="mdl-layout-title">Push Notifications Demo</span>
+                <span class="mdl-layout-title">PWA | Progressive Web Applications !</span>
                 <!-- Add spacer, to align navigation to the right -->
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation. We hide it in small screens. -->
@@ -30,6 +30,10 @@
                 <!-- Your content goes here -->
                 <div class="mdl-cell mdl-cell--4-col">
                     <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="push_title">
+                        <label class="mdl-textfield__label" for="sample1">Push Title</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield">
                         <input class="mdl-textfield__input" type="text" id="push_message">
                         <label class="mdl-textfield__label" for="sample1">Push Message</label>
                     </div>
@@ -41,78 +45,37 @@
                     <li class="mdl-list__item">
                         <span class="mdl-list__item-primary-content">Application Reg_Id : <span id="endpoint"></span></span>
                     </li>
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content">Public Key : <span id="public_key"></span></span>
-                    </li>
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content">Secret Key : <span id="secret_key"></span></span>
-                    </li>
                 </ul>
+            </div>
+            <div>
+                <dialog class="mdl-dialog">
+                    <h4 class="mdl-dialog__title" id="title"></h4>
+                    <div class="mdl-dialog__content">
+                        <p id="message"></p>
+                    </div>
+                    <div class="mdl-dialog__actions">
+                        <button type="button" class="mdl-button">Like it ?</button>
+                        <button type="button" class="mdl-button close">Don't Like !</button>
+                    </div>
+                </dialog>
             </div>
         </main>
 
-            <footer class="mdl-mini-footer"  style="position: fixed; bottom: 0; width:100%;">
-                <div>
-                  <ul class="mdl-mini-footer__link-list">
-                      <li><b>Created with </b><span style="color:#FF69B4	">♥</span> <b> By</b> <a href="https://github.com/houssem-yahiaoui/webpush-notification"><b>Houssem Yahiaoui</b></a>
-                      </li>
-                  </ul>
-                </div>
-            </footer>
+        <footer class="mdl-mini-footer" style="position: fixed; bottom: 0; width:100%;">
+            <div>
+                <ul class="mdl-mini-footer__link-list">
+                    <li><b>Created with </b><span style="color:#FF69B4	">♥</span> <b> By</b> <a href="https://github.com/houssem-yahiaoui"><b>Houssem Yahiaoui</b></a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
     </div>
-
+    <script src="app.js" charset="utf-8"></script>
     <script>
-        var socket = io.connect('https://push-notifier.herokuapp.com/');
+        var socket = io.connect('localhost:3000');
         socket.on('news', function(data) {
             console.log(data);
         });
-
-        //[*] Checking if Service Woker is supported in our Browser.
-        if ('serviceWorker' in navigator) {
-            var endpoint;
-            var key;
-            var authSecret;
-            var ed = document.getElementById("endpoint");
-            var pk = document.getElementById("public_key");
-            var k = document.getElementById("secret_key");
-            navigator.serviceWorker
-                .register('sw.js')
-                .then((reg) => {
-                    console.log('Hello There !', reg);
-                    // [*] Subscribing to the Notification Publisher.
-                    reg.pushManager.subscribe({
-                        userVisibleOnly: true
-                    }).then((subscription) => {
-                        console.log('endpoint:', subscription.endpoint);
-                        // [*] Pushing our Registration Token to the Server.
-                        socket.emit('new_user', subscription.endpoint);
-                        var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
-
-                        // [*] Public Key
-                        key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';
-                        var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
-                        authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
-                        endpoint = subscription.endpoint;
-                        console.log(endpoint, " + ", authSecret, " + ", key);
-
-                        // Changing the view !
-                        ed.innerHTML = endpoint;
-                        pk.innerHTML = key;
-                        k.innerHTML = authSecret;
-                    });
-                });
-            document.getElementById('push').onclick = function() {
-                payload = document.getElementById('push_message');
-                console.log("About to send :" + endpoint, " + ", authSecret, " + ", key, "payload:", payload.value);
-                console.log('sending push');
-                socket.emit('pushme', {
-                    endpoint: endpoint,
-                    key: key,
-                    authSecret: authSecret,
-                    payload: payload.value,
-                });
-            }
-        }
     </script>
 </body>
 
