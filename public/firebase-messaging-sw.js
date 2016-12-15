@@ -54,16 +54,7 @@ messaging.setBackgroundMessageHandler(function(payload) {
 
     const notificationOptions = {
         body: payload.data.msg,
-        icon: "images/icon.jpg",
-        actions: [{
-            action: 'like',
-            title: 'Like',
-            icon: 'images/like.png'
-        }, {
-            action: 'dislike',
-            title: 'Dislike',
-            icon: 'images/dislike.png'
-        }]
+        icon: "images/icon.jpg"
     }
     self.addEventListener('notificationclick', function(event) {
         var messageId = event.notification.data;
