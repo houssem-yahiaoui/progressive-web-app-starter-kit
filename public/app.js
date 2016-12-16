@@ -9,11 +9,11 @@
 
  const messaging = firebase.messaging();
  messaging.requestPermission()
-     .then(function() {
+     .then(() => {
          console.log("We have permission !");
          return messaging.getToken();
      })
-     .then(function(token) {
+     .then((token) => {
          console.log(token);
          document.getElementById('endpoint').innerHTML = token
          socket.emit("new_user", token);
@@ -35,7 +35,7 @@
          console.log("Huston we have a problem !", err);
      });
 
- messaging.onMessage(function(notif) {
+ messaging.onMessage((notif) => {
      console.log(notif);
      var dialog = document.querySelector('dialog');
      if (!dialog.showModal) {
@@ -44,7 +44,7 @@
      document.getElementById('message').innerHTML = notif.notification.body;
      document.getElementById('title').innerHTML = notif.notification.title;
      dialog.showModal();
-     dialog.querySelector('.close').addEventListener('click', function() {
+     dialog.querySelector('.close').addEventListener('click', () => {
          dialog.close();
      });
  });
