@@ -1,10 +1,18 @@
 {
-  "name": "push-notification",
-  "version": "0.0.4",
-  "description": "A simple nodejs notifcation system",
-  "main": "api.js",
+  "name": "pwa-starter-kit",
+  "version": "0.0.6",
+  "description": "Your typical Progressive Web Application Starter Pack",
+  "author": "Houssem Yahiaoui <housse.yahiaoui.ai@gmail.com>",
   "scripts": {
     "start": "node ./bin/www"
+  },
+  "main": "api.js",
+  "repository" : { 
+    "type" : "git",
+    "url" : "https://github.com/houssem-yahiaoui/progressive-web-app-starter-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/houssem-yahiaoui/progressive-web-app-starter-kit/issues"
   },
   "keywords": [
     "notifcation",
@@ -13,12 +21,11 @@
     "es6",
     "serviceworker",
     "pwa"
-  ],
-  "author": "Houssem Yahiaoui",
-  "license": "MIT",
+  ],  
   "dependencies": {
     "express": "^4.13.4",
     "fcm-push": "^1.1.2",
     "socket.io": "^1.4.6"
-  }
+  },
+  "license": "MIT"
 }
