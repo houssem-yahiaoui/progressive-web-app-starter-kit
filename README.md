@@ -1,6 +1,11 @@
-# Progressive Web Application Walkthrough
+# Progressive Web Application Starter Pack
 
-This is a simple PWA application built/concieved using the latest changes and rocommendations, especially the Firebase Cloud Messeging System or FCM
+In this Pack, you wil find a total pack that will hold every needed feature that a PWA application truly need and it will contain the following : 
+
+ 1. Firebase Service Worker file.
+ 2. Basic Offline-based functionalities that wil be upgrded later on to sw-precache.
+ 3. Hosting over Heroku.
+ 4. and more ...
 
 ## Setup :
 
