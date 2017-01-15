@@ -1,5 +1,10 @@
 # Progressive Web Application Starter Pack
 
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
+[![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
+
+
+
 In this Pack, you wil find a total pack that will hold every needed feature that a PWA application truly need and it will contain the following : 
 
  1. Firebase Service Worker file.
