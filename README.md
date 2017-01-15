@@ -50,7 +50,6 @@ In order to run the application go to your command line of choice and add the fo
 ```terminal
 # npm start
 ```
-**Happy Coding :)**
 
-Peace !
+[![forthebadge](http://forthebadge.com/badges/built-with-love.svg)](http://forthebadge.com)
 
