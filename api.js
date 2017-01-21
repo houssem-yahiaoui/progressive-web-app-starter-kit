@@ -18,8 +18,7 @@ app.get('/', (req, res) => {
 app.io.on('connection', socket => {
     console.log('Huston ! we have a new connection ...');
     socket.on('new_user', (endpoint) => {
-        console.log(endpoint);
-        // [*] Adding our user notification registration token to our list typically hided in a secret place.
+        // [*] TODO: Adding our user notification registration token to our list typically hided in a secret place.
     });
 
     socket.on('pushme', (data) => {
@@ -35,11 +34,10 @@ app.io.on('connection', socket => {
 
         fcm.send(message)
             .then(function(response) {
-                console.log("Successfully sent with response: ", response);
+                //TODO : Implement success mechanism
             })
             .catch(function(err) {
-                console.log("Something has gone wrong!");
-                console.error(err);
+                //TODO : implement error handling mechanism
             })
     });
 
