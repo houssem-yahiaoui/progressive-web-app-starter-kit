@@ -19,7 +19,7 @@ const messaging = firebase.messaging();
 
 // [*] SW Install State Event.
 self.addEventListener('install', (event) => {
-  console.log("Install Step, let's cache some files =D");
+   //TODO: implement a caching start toastr
   //[*] Let's cache a bit !
   event.waitUntil(
        caches.open('pwa').then((cache) => {
@@ -27,20 +27,21 @@ self.addEventListener('install', (event) => {
                 '/',
                 '/index.html',
                 '/app.js'
-            ]).then(() => self.skipWaiting());
+            ]).then(() => {
+		    self.skipWaiting();
+		    //TODO: implement success caching process toastr
+	    });
         })
     );
 });
 
 // [*] SW Activate State Event.
 self.addEventListener('activate',(event) => {
-	console.log('Activated!', event);
+	//TODO : implmenet proper handling
 });
 
 // [*] SW Fetch Event.
-self.addEventListener('fetch', (event) => {
-	console.log('Let\'s get some Data');
-	console.log(event.request.url);
+self.addEventListener('fetch', (event) => {	
   event.respondWith(
     caches.match(event.request).then(response => {
       return response || fetch(event.request);
@@ -50,8 +51,6 @@ self.addEventListener('fetch', (event) => {
 
 // [*] Special object let us handle our Background Push Notifications
 messaging.setBackgroundMessageHandler((payload) => {
-    console.log();
-
     const notificationOptions = {
         body: payload.data.msg,
         icon: "images/icon.jpg"
@@ -62,11 +61,11 @@ messaging.setBackgroundMessageHandler((payload) => {
         event.notification.close();
 
         if (event.action === 'like') {
-          console.log("Goin to like something !");
+          //TODO : implmenet proper handling
         } else if (event.action === 'dislike') {
-          console.log("Goin to dislike something !");
+          //TODO : implmenet proper handling
         } else {
-          console.log("wh00t !");
+          //TODO : implmenet proper handling
         }
     }, false);
     return self.registration.showNotification(payload.data.title,
