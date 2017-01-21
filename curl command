@@ -1,4 +1,0 @@
-curl -X POST --header "Authorization: key=<Firebase Cloud Messaging API KEY>" --Header "Content-Type: application/json" https://fcm.googleapis.com/fcm/send -d "{\"to\":\<Client Reg ID>"\",\"notification\":{\"body\":\"Yellow\", \"title\":\"Heyy people\", \"icon\":\"images/icon.jpg\"},\"priority\":10}"
-
-
-curl -X POST --header "Authorization: key=<Firebase Cloud Messaging API KEY>" --Header "Content-Type: application/json" https://fcm.googleapis.com/fcm/send -d "{\"to\":\"<Client Reg ID>\",\"data\":{\"title\":\"Heyy\", \"msg\":\"Heyy people\"}}"
