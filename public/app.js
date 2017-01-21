@@ -10,7 +10,6 @@
  const messaging = firebase.messaging();
  messaging.requestPermission()
      .then(() => {
-         console.log("We have permission !");
          return messaging.getToken();
      })
      .then((token) => {
@@ -32,9 +31,10 @@
          }
      })
      .catch(function(err) {
-         console.log("Huston we have a problem !", err);
+         //TODO : Implement propoer error handling
      });
 
+ //[*] Showasing a model insteam of a notification when user is physicaly on the page.
  messaging.onMessage((notif) => {
      console.log(notif);
      var dialog = document.querySelector('dialog');
