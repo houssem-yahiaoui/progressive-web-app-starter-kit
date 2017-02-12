@@ -18,7 +18,8 @@ app.get('/', (req, res) => {
 app.io.on('connection', socket => {
     console.log('Huston ! we have a new connection ...');
     socket.on('new_user', (endpoint) => {
-        // [*] TODO: Adding our user notification registration token to our list typically hided in a secret place.
+        // [*] TODO: Adding our user notification registration token to our list typically hide it in a secret place. like a DB
+        //           or some secure server because this information is critical to you users.
     });
 
     socket.on('pushme', (data) => {
